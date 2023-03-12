@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'images/list',
+        index: true,
         element: <ImageListing />,
       },
       {
-        path: 'images/upload',
+        path: 'upload',
         element: <ImageUpload />,
       },
     ],

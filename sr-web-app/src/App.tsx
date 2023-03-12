@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Outlet } from 'react-router-dom';
+import SRNavbar from './shared/SRNavbar';
 
 function App() {
 
   return (
-    <div>
-      <div>My Navbar</div>
+    <>
+      <SRNavbar />
       <Outlet />
-    </div>
+    </>
   );
 }
 

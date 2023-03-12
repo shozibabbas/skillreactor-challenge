@@ -21,6 +21,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "react-ultimate-pagination": "^1.3.0",
     "sass": "^1.59.2",
     "sort-by": "^1.2.0",
     "typescript": "^4.9.5",
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-ultimate-pagination": "^1.2.1"
   }
 }
