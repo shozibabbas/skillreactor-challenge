@@ -2,21 +2,20 @@ import {
   BadRequestException,
   Controller,
   Get,
-  HttpStatus,
   Param,
   ParseFilePipeBuilder,
   Post,
   Query,
   Res,
   UploadedFiles,
-  UseInterceptors
+  UseInterceptors,
 } from '@nestjs/common';
-import {ImagesService} from './images.service';
-import {FilesInterceptor} from "@nestjs/platform-express";
-import {diskStorage} from "multer";
-import {extname, join} from "path";
-import {v4 as uuidv4} from 'uuid';
-import {ImageFindAllFilters} from "./entities/ImageFindAllFilters";
+import { ImagesService } from './images.service';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname, join } from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import { ImageFindAllFilters } from './entities/ImageFindAllFilters';
 
 @Controller('images')
 export class ImagesController {
@@ -36,13 +35,13 @@ export class ImagesController {
       storage: diskStorage({
         destination: './uploads',
         filename: (req, file, cb) => {
-          const {originalname} = file;
+          const { originalname } = file;
           const uniqueId = uuidv4();
           const filename = `${uniqueId}${extname(originalname)}`;
           cb(null, filename);
         },
-      })
-    }
+      }),
+    },
   ))
   create(
     @UploadedFiles(
@@ -50,19 +49,17 @@ export class ImagesController {
         .addFileTypeValidator({
           fileType: 'image',
         })
-        .build({
-          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY
-        }),
-    ) files: Array<Express.Multer.File>
+        .build(),
+    ) images: Array<Express.Multer.File>,
   ) {
-    return this.imagesService.create(files);
+    return this.imagesService.create(images);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string, @Res() res) {
     const file = this.imagesService.findOne(id);
     if (!file) {
-      throw new BadRequestException("image not found");
+      throw new BadRequestException('image not found');
     }
     res.sendFile(join(__dirname, '../../', file.destination, file.filename));
   }

@@ -1,7 +1,7 @@
-import {Injectable} from '@nestjs/common';
-import {v4 as uuidv4} from 'uuid';
-import {paginate} from "../utils";
-import {ImageFindAllFilters} from "./entities/ImageFindAllFilters";
+import { Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
+import { paginate } from '../utils';
+import { ImageFindAllFilters } from './entities/ImageFindAllFilters';
 
 @Injectable()
 export class ImagesService {
@@ -25,12 +25,12 @@ export class ImagesService {
             continue;
           }
           switch (typeof Value[k]) {
-            case "string":
-              if (!Value[k].includes(V)) {
+            case 'string':
+              if (!Value[k].toLowerCase().includes(V)) {
                 return false;
               }
               break;
-            case "number":
+            case 'number':
               if (Value[k] !== V) {
                 return false;
               }
@@ -44,14 +44,14 @@ export class ImagesService {
           id: k,
           originalName: V.originalname,
           // fileName: V.filename,
-          filePath: `images/${k}`
+          filePath: `images/${k}`,
         });
         return a;
       }, []);
     let result = {
       count: entries.length,
-      rows: entries
-    }
+      rows: entries,
+    };
     if (filters.pageSize && filters.pageNumber) {
       result.rows = paginate(result.rows, filters.pageSize, filters.pageNumber);
     }
