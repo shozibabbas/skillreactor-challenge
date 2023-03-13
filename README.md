@@ -49,7 +49,7 @@ ____________
 
 # Solution
 
-We will start by creating two applications:
+We will create two applications:
 
 1. React web app (for frontend)
 2. NestJS app (for backend)
@@ -77,3 +77,15 @@ We will start by creating two applications:
 ### Improvements to be made
 
 - add authentication
+
+____________________
+
+# Screens
+
+## Image listing
+
+![image](https://i.imgur.com/U9AyIUB.png)
+
+## Image Upload
+
+![image](https://i.imgur.com/Kbyirl3.png)
