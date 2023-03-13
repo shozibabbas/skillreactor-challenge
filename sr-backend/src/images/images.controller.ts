@@ -12,9 +12,7 @@ import {
 } from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname, join } from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { join } from 'path';
 import { ImageFindAllFilters } from './entities/ImageFindAllFilters';
 
 @Controller('images')
@@ -30,18 +28,6 @@ export class ImagesController {
   @Post()
   @UseInterceptors(FilesInterceptor(
     'images',
-    20,
-    {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => {
-          const { originalname } = file;
-          const uniqueId = uuidv4();
-          const filename = `${uniqueId}${extname(originalname)}`;
-          cb(null, filename);
-        },
-      }),
-    },
   ))
   create(
     @UploadedFiles(

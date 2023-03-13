@@ -5,11 +5,11 @@ import { DataAPIResponse } from '../types/DataAPIResponse';
 // Define a service using a base URL and expected endpoints
 export const imagesApi = createApi({
   reducerPath: 'imagesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_BASE_URI }),
   tagTypes: ['images'],
   endpoints: (builder) => ({
     getImages: builder.query<DataAPIResponse<ImageFile>, object>({
-      query: (params) => ({ url: 'images', method: 'GET', params }),
+      query: (params) => ({ url: '/images', method: 'GET', params }),
       providesTags: ['images'],
     }),
     uploadImages: builder.mutation<ImageFile[], File[]>({
@@ -19,7 +19,7 @@ export const imagesApi = createApi({
           formData.append('images', f);
         });
         return {
-          url: 'images',
+          url: '/images',
           method: 'POST',
           body: formData,
         };

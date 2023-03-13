@@ -28,8 +28,8 @@ function ImageUpload() {
           </Form.Group>
           <Row className={'mb-3'}>
             {
-              selectedFiles && Array.from(selectedFiles).map(f => (
-                <Col md={2}>
+              selectedFiles && Array.from(selectedFiles).map((f, i) => (
+                <Col md={2} key={i}>
                   <Image thumbnail={true} src={URL.createObjectURL(f)} />
                   {f.name}
                 </Col>

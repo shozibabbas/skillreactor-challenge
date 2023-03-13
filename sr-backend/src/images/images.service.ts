@@ -7,6 +7,8 @@ import { ImageFindAllFilters } from './entities/ImageFindAllFilters';
 export class ImagesService {
   static images: { [id: string]: Express.Multer.File } = {};
 
+  static getImages = () => ImagesService.images;
+
   create(files: Express.Multer.File[]): string[] {
     const newIds = [];
     for (const file of files) {

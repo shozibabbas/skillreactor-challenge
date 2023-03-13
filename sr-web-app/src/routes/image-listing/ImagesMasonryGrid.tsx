@@ -25,7 +25,7 @@ function ImagesMasonryGrid({ images, onImageClick }: ImagesMasonryGridProps) {
       {
         images && images.map(x => (
           <div key={x.id} onClick={() => onImageClick(x.filePath)} className={'image-container'}>
-            <Image fluid={true} src={`http://localhost:8000/${x.filePath}`} />
+            <Image fluid={true} src={`${process.env.REACT_APP_API_BASE_URI}/${x.filePath}`} />
           </div>
         ))
       }
